@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { StyleSheet, View, SafeAreaView } from "react-native"
+import { NativeRouter, Routes, Route } from "react-router-native"
+// import { API_URL } from "@env"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import Tweeter from "./pages/Tweeter"
+import Profile from "./pages/Profile"
+import Nav from "./components/Nav"
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginVertical: 40,
+    marginHorizontal: 20,
+    position: "relative",
+    height: "95%",
+    borderWidth: 3,
+    borderColor: "green",
+    justifyContent: "space-between",
+    backgroundColor: "cyan",
   },
-});
+})
+
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <NativeRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/tweets" element={<Tweeter />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Nav />
+      </NativeRouter>
+    </SafeAreaView>
+  )
+}
+
+export default App
