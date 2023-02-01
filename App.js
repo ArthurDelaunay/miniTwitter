@@ -1,8 +1,7 @@
 import { StyleSheet, View, SafeAreaView } from "react-native"
 import { NativeRouter, Routes, Route } from "react-router-native"
-// import { API_URL } from "@env"
+import { UserContextProvider } from "./contexts/user"
 import Home from "./pages/Home"
-import NotFound from "./pages/NotFound"
 import Tweeter from "./pages/Tweeter"
 import Profile from "./pages/Profile"
 import Nav from "./components/Nav"
@@ -22,17 +21,18 @@ const styles = StyleSheet.create({
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <NativeRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/tweets" element={<Tweeter />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Nav />
-      </NativeRouter>
-    </SafeAreaView>
+    <UserContextProvider>
+      <SafeAreaView style={styles.container}>
+        <NativeRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/tweets" element={<Tweeter />} />
+          </Routes>
+          <Nav />
+        </NativeRouter>
+      </SafeAreaView>
+    </UserContextProvider>
   )
 }
 

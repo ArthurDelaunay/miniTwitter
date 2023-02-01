@@ -28,9 +28,6 @@ const Nav = () => {
       <Link to="/tweets">
         <Text style={styles.font}>Tweets</Text>
       </Link>
-      <Link to="/notfound">
-        <Text style={styles.font}>404</Text>
-      </Link>
     </View>
   )
 }
